@@ -7,8 +7,10 @@ const postRequest = async (data, endpoint) => {
     const response = await axios.post(`${API}/${endpoint}`, data);
 
     console.log("Server response:", response.data);
+    return true;
   } catch (error) {
     console.error("Error sending request:", error.response.data.message);
+    return false;
   }
 };
 
