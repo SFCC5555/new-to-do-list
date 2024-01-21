@@ -1,8 +1,20 @@
 const validateUsername = (username, setValidateInputError) => {
-  setValidateInputError((prevErrors) => ({
-    ...prevErrors,
-    username: "Error mijin",
-  }));
+  if (username.length < 3) {
+    setValidateInputError((prevErrors) => ({
+      ...prevErrors,
+      username: "Username must be between 3 and 30 characters.",
+    }));
+    return false;
+  }
+
+  if (!/^[a-zA-Z0-9_-]*$/.test(username)) {
+    setValidateInputError((prevErrors) => ({
+      ...prevErrors,
+      username: "Username must contain only letters, numbers, or hyphens.",
+    }));
+    return false;
+  }
+
   return true;
 };
 

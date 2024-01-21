@@ -33,11 +33,20 @@ const RegisterPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (
-      validateUsername(formData.username, setValidateInputError) &&
-      validateEmail(formData.email, setValidateInputError) &&
-      validatePassword(formData.password, setValidateInputError)
-    ) {
+    const usernmaeValidation = validateUsername(
+      formData.username,
+      setValidateInputError
+    );
+
+    const emailValidation = validateEmail(
+      formData.email,
+      setValidateInputError
+    );
+    const passwordValidation = validatePassword(
+      formData.password,
+      setValidateInputError
+    );
+    if (usernmaeValidation && emailValidation && passwordValidation) {
       const isRegister = await postRequest(formData, "register");
       if (isRegister) {
         navigate("/");
@@ -64,6 +73,9 @@ const RegisterPage = () => {
               type={field === "password" && hidePassword ? "password" : "text"}
               name={field}
               placeholder={field}
+              maxLength={
+                field === "username" ? 30 : field === "password" ? 16 : 100
+              }
               className={`w-full p-2 ${
                 field === "password" && "pr-8"
               } rounded-md text-sm light-bg text-white opacity-75 hover:opacity-100`}
