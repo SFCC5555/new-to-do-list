@@ -1,4 +1,12 @@
 const validateUsername = (username, setValidateInputError) => {
+  if (username.length === 0) {
+    setValidateInputError((prevErrors) => ({
+      ...prevErrors,
+      username: "Username is required.",
+    }));
+    return false;
+  }
+
   if (username.length < 3) {
     setValidateInputError((prevErrors) => ({
       ...prevErrors,

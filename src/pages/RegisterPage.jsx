@@ -3,7 +3,7 @@ import { postRequest } from "../api/auth";
 import { validateUsername } from "../utils/validation/validateUsername";
 import { validateEmail } from "../utils/validation/validateEmail";
 import { validatePassword } from "../utils/validation/validatePassword";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -106,6 +106,15 @@ const RegisterPage = () => {
         >
           REGISTER
         </button>
+        <div className="flex items-center justify-between w-full text-xs mt-6">
+          <p>Already have an account?</p>
+          <Link
+            to="/login"
+            className="text-blue-400 opacity-90 hover:opacity-100"
+          >
+            Sign in
+          </Link>
+        </div>
       </form>
     </>
   );

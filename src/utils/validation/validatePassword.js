@@ -1,4 +1,12 @@
 const validatePassword = (password, setValidateInputError) => {
+  if (password.length === 0) {
+    setValidateInputError((prevErrors) => ({
+      ...prevErrors,
+      password: "Password is required.",
+    }));
+    return false;
+  }
+   
   if (password.length < 6) {
     setValidateInputError((prevErrors) => ({
       ...prevErrors,
