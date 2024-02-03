@@ -1,15 +1,13 @@
-import axios from "axios";
-
-const API = "http://localhost:3000/api/v1";
+import axios from "./axios";
 
 const postRequest = async (data, endpoint) => {
   try {
-    const response = await axios.post(`${API}/${endpoint}`, data);
+    const response = await axios.post(`/${endpoint}`, data);
     console.log("Server response:", response.data);
-    return true;
+    return { status: true, data: response.data };
   } catch (error) {
     console.error("Error sending request:", error.response.data.message);
-    return false;
+    return { status: false };
   }
 };
 

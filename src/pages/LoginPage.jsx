@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { postRequest } from "../api/auth";
+import { postRequest } from "../api/post";
 import { validateEmail } from "../utils/validation/validateEmail";
 import { validatePassword } from "../utils/validation/validatePassword";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateProfile } from "../redux/profileSlice";
+import { getRequest } from "../api/get";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -41,9 +46,11 @@ const LoginPage = () => {
       setValidateInputError
     );
     if (emailValidation && passwordValidation) {
-      const isLogin = await postRequest(formData, "login");
-      if (isLogin) {
-        navigate("/");
+      const login = await postRequest(formData, "login");
+      if (login.status) {
+        const profile = await getRequest("profile");
+        dispatch(updateProfile(profile));
+        navigate("/profile");
       } else {
         setValidateInputError((prevErrors) => ({
           ...prevErrors,
