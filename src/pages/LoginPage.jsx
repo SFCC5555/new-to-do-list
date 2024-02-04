@@ -50,7 +50,7 @@ const LoginPage = () => {
       if (login.status) {
         const profile = await getRequest("profile");
         dispatch(updateProfile(profile));
-        navigate("/profile");
+        navigate("/");
       } else {
         setValidateInputError((prevErrors) => ({
           ...prevErrors,
@@ -61,9 +61,9 @@ const LoginPage = () => {
   };
 
   return (
-    <>
+    <div className="sm:w-1/2 md:w-1/3 rounded-md dark-bg p-5">
       <form
-        className="flex flex-col items-center justify-between gap-5 p-5 rounded-md  sm:w-1/2 md:w-1/3 dark-bg"
+        className="w-full flex flex-col items-center justify-between gap-5"
         onSubmit={handleSubmit}
       >
         {Object.entries(formData).map(([field, value]) => (
@@ -105,17 +105,17 @@ const LoginPage = () => {
         >
           LOGIN
         </button>
-        <div className="flex items-center justify-between w-full text-xs mt-6">
-          <p>{"Don't have an account?"}</p>
-          <Link
-            to="/register"
-            className="text-blue-400 opacity-90 hover:opacity-100"
-          >
-            Sign up
-          </Link>
-        </div>
       </form>
-    </>
+      <div className="flex items-center justify-between w-full text-xs mt-6">
+        <p>{"Don't have an account?"}</p>
+        <Link
+          to="/register"
+          className="text-blue-400 opacity-90 hover:opacity-100"
+        >
+          Sign up
+        </Link>
+      </div>
+    </div>
   );
 };
 

@@ -27,6 +27,10 @@
   .#{$color}-bg {
     background-color: var(--#{$color}-color);
   }
+
+  .#{$color}-border {
+    border-color: var(--#{$color}-color);
+  }
 }
 
 body {
@@ -35,7 +39,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  padding: 20px;
+  padding-top: 75px;
   background-color: var(--main-color);
   color: var(--text-color);
   font-family: var(--main-font);
