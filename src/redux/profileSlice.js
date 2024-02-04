@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getRequest } from "../api/get";
 
-const profile = await getRequest("profile");
+const profile = getRequest("profile");
 
 const initialState = { auth: profile.status, user: profile.data };
 
