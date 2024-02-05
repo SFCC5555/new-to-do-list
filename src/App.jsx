@@ -5,8 +5,24 @@ import { TasksPage } from "./pages/TasksPage";
 import { TaskFormPage } from "./pages/TaskFormPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getRequest } from "./api/get";
+import { updateProfile } from "./redux/profileSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const profile = await getRequest("profile");
+
+      dispatch(updateProfile(profile));
+    };
+
+    getProfile();
+  });
+
   return (
     <BrowserRouter>
       <h1 className="text-2xl mb-5">To-do List</h1>

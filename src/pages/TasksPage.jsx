@@ -69,7 +69,13 @@ const TasksPage = () => {
             </div>
           </div>
 
-          <p className={`${task.description==="No Description"?"opacity-10":""}`} >{task.description}</p>
+          <p
+            className={`${
+              task.description === "No Description" ? "opacity-10" : ""
+            }`}
+          >
+            {task.description}
+          </p>
         </div>
       ))}
       {error && <p>{error}</p>}
