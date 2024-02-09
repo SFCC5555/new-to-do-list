@@ -1,8 +1,13 @@
 import axios from "./axios";
 
-const getRequest = async (endpoint) => {
+const getRequest = async (endpoint, token) => {
   try {
-    const response = await axios.get(`/${endpoint}`);
+    const response = await axios.get(`/${endpoint}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
     console.log("Server response:", response.data);
     return { status: true, data: response.data };
   } catch (error) {
