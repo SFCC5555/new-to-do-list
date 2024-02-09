@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "../redux/profileSlice";
 import { getRequest } from "../api/get";
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -48,6 +49,8 @@ const LoginPage = () => {
     if (emailValidation && passwordValidation) {
       const login = await postRequest(formData, "login");
       if (login.status) {
+        const token = Cookies.get("token");
+        console.log(token);
         const profile = await getRequest("profile");
         dispatch(updateProfile(profile));
         navigate("/");
