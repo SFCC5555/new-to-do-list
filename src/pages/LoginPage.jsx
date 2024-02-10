@@ -53,7 +53,7 @@ const LoginPage = () => {
       const login = await postRequest(formData, "login");
       if (login.status) {
         const token = await login.data.user.token;
-        Cookies.set("token", token);
+        Cookies.set("token", token, { domain: "localhost"});
         console.log("TOKEN: ", Cookies.get("token"));
         const profile = await getRequest("profile");
         dispatch(updateProfile(profile));
