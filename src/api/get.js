@@ -4,7 +4,7 @@ const getRequest = async (endpoint, token) => {
   try {
     const response = await axios.get(`/${endpoint}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Cookie: `token=${token}`,
         "Content-Type": "application/json",
       },
     });
