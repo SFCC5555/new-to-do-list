@@ -1,13 +1,8 @@
 import axios from "./axios";
 
-const getRequest = async (endpoint, token) => {
+const getRequest = async (endpoint) => {
   try {
-    const response = await axios.get(`/${endpoint}`, {
-      headers: {
-        Cookie: `token=${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.get(`/${endpoint}`);
     console.log("Server response:", response.data);
     return { status: true, data: response.data };
   } catch (error) {

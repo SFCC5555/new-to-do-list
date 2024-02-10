@@ -3,17 +3,18 @@ import { postRequest } from "../api/post";
 import { validateEmail } from "../utils/validation/validateEmail";
 import { validatePassword } from "../utils/validation/validatePassword";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateProfile } from "../redux/profileSlice";
 import { getRequest } from "../api/get";
-import { updateToken } from "../redux/tokenSlice";
+//import { updateToken } from "../redux/tokenSlice";
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.token);
+  //const token = useSelector((state) => state.token);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -51,9 +52,10 @@ const LoginPage = () => {
     if (emailValidation && passwordValidation) {
       const login = await postRequest(formData, "login");
       if (login.status) {
-        dispatch(updateToken(login.data.user.token));
-        console.log("TOKEN: ", token);
-        const profile = await getRequest("profile", token);
+        const token = login.data.user.token;
+        //Cookies.set("token", token, { path: "/" });
+        console.log("TOKENXXX: ", Cookies.get("token"));
+        const profile = await getRequest("profile");
         dispatch(updateProfile(profile));
         navigate("/");
       } else {
