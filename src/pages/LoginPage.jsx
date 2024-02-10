@@ -52,8 +52,8 @@ const LoginPage = () => {
     if (emailValidation && passwordValidation) {
       const login = await postRequest(formData, "login");
       if (login.status) {
-        const token = login.data.user.token;
-        Cookies.set("token", token, { path: "/" });
+        const token = await login.data.user.token;
+        Cookies.set("token", token);
         console.log("TOKEN: ", Cookies.get("token"));
         const profile = await getRequest("profile");
         dispatch(updateProfile(profile));
