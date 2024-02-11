@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
   const { user } = useSelector((state) => state.profile);
-  console.log(user);
   return (
     <section className="flex flex-col justify-between gap-3 sm:w-1/2 md:w-1/3 rounded-md dark-bg p-5">
       <div className="text-2xl mb-3">
