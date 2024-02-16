@@ -35,6 +35,7 @@ function App() {
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<h2>404 Page Not Found</h2>} />
       </Routes>
     </BrowserRouter>
   );
